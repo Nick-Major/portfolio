@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import './Portfolio.css';
 import Toolbar from "./Toolbar";
+import ProjectList from './ProjectList';
 
 class Portfolio extends Component {
   constructor(props) {
@@ -63,14 +65,23 @@ class Portfolio extends Component {
     };
   }
 
-  // Обработчик выбора фильтра
   handleSelectFilter = (filter) => {
-    console.log('Выбран фильтр:', filter);
     this.setState({ selected: filter });
   };
 
+  getFilteredProjects() {
+    const { selected, projects } = this.state;
+    
+    if (selected === 'All') {
+      return projects;
+    }
+    
+    return projects.filter(project => project.category === selected);
+  }
+
   render() {
     const { filters, selected } = this.state;
+    const filteredProjects = this.getFilteredProjects();
 
     return (
       <div className="portfolio">
@@ -79,12 +90,8 @@ class Portfolio extends Component {
           selected={selected}
           onSelectFilter={this.handleSelectFilter}
         />
-        {/* Здесь будет отображение проектов */}
-        <div className="projects-list">
-          {this.state.projects.length === 0 && (
-            <p>Нет проектов для отображения</p>
-          )}
-        </div>
+        
+        <ProjectList projects={filteredProjects} />
       </div>
     );
   }
