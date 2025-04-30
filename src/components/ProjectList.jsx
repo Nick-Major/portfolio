@@ -1,6 +1,3 @@
-import './ProjectList.css';
-// import PropTypes from 'prop-types';
-
 const ProjectList = ({ projects }) => {
   return (
     <div className="projects-list">
@@ -23,14 +20,5 @@ const ProjectList = ({ projects }) => {
     </div>
   );
 };
-
-// ProjectList.propTypes = {
-//   projects: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       img: PropTypes.string.isRequired,
-//       category: PropTypes.string.isRequired
-//     })
-//   ).isRequired
-// };
 
 export default ProjectList;
